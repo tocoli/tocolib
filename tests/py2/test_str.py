@@ -200,13 +200,3 @@ class TestStr(unittest.TestCase):
 
         self.assertEqual(decode(encode('café', 'utf-32'), 'utf-32'), u'café')
         self.assertEqual(decode(encode(u'café', 'utf-32'), 'utf-32'), u'café')
-
-        # raise Exception(decode(encode('café', 'base64'), 'base64'))
-
-        class MyException(Exception):
-            pass
-
-        raise MyException(u'Cannot do this')
-        raise MyException(u'Cannot do this while at a café')
-
-
