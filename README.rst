@@ -1,20 +1,22 @@
-A sample Python project
+tocolib
 =======================
 
-A sample project that exists as an aid to the `Python Packaging User Guide
-<https://packaging.python.org>`_'s `Tutorial on Packaging and Distributing
-Projects <https://packaging.python.org/en/latest/distributing.html>`_.
-
+The `tocolib` contains utility functions to make your life as developer easier.
 
 Install
 =======
 
-install all dependencies:
-    ```
+under Ubuntu make sure that you also have `pip3` if you like to use the library with Python 3:
+
+    sudo apt-get install python3-pip
+
+install all dependencies (globally):
+
     virtualenv ./venv
     source venv/bin/activate
-    pip install -r requirements.txt
-    ```
+    sudo pip install -r requirements.txt
+    sudo pip3 install -r requirements.txt
+
 
 Testing
 =======

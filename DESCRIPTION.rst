@@ -1,13 +1,73 @@
-A sample Python project
-=======================
+tocolib
+=======
 
-This is the description file for the project.
+The tocolib is a multipurpose utility library.
 
-The file should use UTF-8 encoding and be written using ReStructured Text. It
-will be used to generate the project webpage on PyPI, and should be written for
-that purpose.
 
-Typical contents for this file would include an overview of the project, basic
-usage examples, etc. Generally, including the project changelog in here is not
-a good idea, although a simple "What's New" section for the most recent version
-may be appropriate.
+Structure
+---------
+
+    :namespace:
+
+        |   ``tocoli``  - six (Python 2 and 3 compatibility utilities) and more
+
+    :modules:
+
+
+        |   ``cmp``     - compare utilities
+        |               For those who like to compare apples with pears.
+
+        |    ``dsl``    - python like it should be.
+        |               The module is a wrapper for other `tocoli` modules. It
+        |               contains a domain specific language for common functions
+        |               like filtering, sorting, mapping and more. All functions
+        |               have a consistent API and results.
+
+        |   ``enc``     - encoding
+        |               Provides universal and powerful encoding functions.
+
+        |   ``filter`` - filter functions
+
+        |   ``fn``     - common lambda functions
+
+        |   ``join``   - join functions
+
+        |   ``map``    - recursive mapping
+
+        |   ``ratio``  - ratio functions
+        |              Provides ratio functions for varios purposes.
+
+        |   ``regex``  - regular expression utilities
+        |              Contains helper functions to generate common regular expressions.
+
+        |   ``sort``   - sort functions
+
+        |   ``spell``  - spelling utilities
+
+        |   ``string`` - string functions
+
+        |   ``test``   - testing and benchmarking
+
+        |   ``type``   - type conversion utilities
+
+
+What's New
+----------
+
+    * The tocolib proudly supports Python 2 and 3.
+        The library makes internally usage of the six utilities to provide
+        universal Python 2 and 3 support.
+
+    * Sorting functions are easier to use.
+        Sorting dictionaries by value can now be achieved with **kwargs, which
+        enables custom naming for keys.
+
+    * Powerful mapping.
+        Use the recursive mapping to apply functions to complex data struc-
+        tures.
+
+    * Meta ratio:
+        The meta() function from module `ratio` can combine varios ratios in a
+        weighted manner.
+
+For more information on current changes check the `CHANGELOG.md`.

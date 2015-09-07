@@ -40,6 +40,7 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+docs/build/
 
 
 # Created by https://www.gitignore.io/api/linux,osx,windows,python
