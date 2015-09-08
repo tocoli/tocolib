@@ -41,7 +41,7 @@ class Filter:
         """Returns a set."""
         return set(filter(where, s))
 
-    class Dict:
+    class dict:
         class by:
             @staticmethod
             def key(d, keys, all_keys=False):
@@ -63,7 +63,7 @@ class Filter:
                 except:
                     return None
 
-    class Strings:
+    class strings:
         class by:
             @staticmethod
             def similarity(iterable, keywords, ratio=0.80, weights=(1, 4), case_sensitive=False):
@@ -77,7 +77,7 @@ class Filter:
                 from tocoli.filter import filter_strings_by_keywords
                 return filter_strings_by_keywords(iterable, keywords, case_sensitive)
 
-    class Dicts:
+    class dicts:
         class by:
 
             @staticmethod
@@ -130,7 +130,7 @@ class Sort:
         """Returns a list."""
         return sorted(s, key=key, reverse=reverse)
 
-    class Dict:
+    class dict:
         class by:
             @staticmethod
             def key(d, reverse=False):
@@ -144,7 +144,7 @@ class Sort:
                 from tocoli.sort import sort_dict_by_value
                 return sort_dict_by_value(d, reverse)
 
-    class Strings:
+    class strings:
         class by:
             @staticmethod
             def similarity(iterable, keyword, reverse=False, weights=(1,1), case_sensitive=False):
@@ -152,142 +152,147 @@ class Sort:
                 from tocoli.sort import sort_strings_by_similarity
                 return sort_strings_by_similarity(iterable, keyword, reverse, weights, case_sensitive)
 
-    class Dicts:
+    class dicts:
         class by:
-            from tocoli.fn import return_first_value
-            @staticmethod
-            def value(iterable, keys, values=return_first_value, default=None, reverse=False):
-                """Sort a list of dictionaries as you like!
+            from tocoli.sort import sort_dicts_by_value
+            from tocoli.sort import sort_dicts_by_similarity
+            value = staticmethod(sort_dicts_by_value)
+            similarity = staticmethod(sort_dicts_by_similarity)
+    #         from tocoli.join import join_args_as_string
+    #         @staticmethod
+    #         def value(iterable, keys, values=join_args_as_string, default=None, reverse=False):
+    #             """Sort a list of dictionaries as you like!
 
-                Sort dictionaries which are in a 'list'. The functional `where` parameter
-                behaves like the filter function from the built-in `filter` function. The
-                functional `key` parameter behaves like the functional `key` parameter
-                from the built-in `sorted` function.
+    # Sort dictionaries which are in a 'list'. The functional `where` parameter
+    # behaves like the filter function from the built-in `filter` function. The
+    # functional `key` parameter behaves like the functional `key` parameter
+    # from the built-in `sorted` function.
 
-                Examples:
+    # Examples:
 
-                    Simple sort by a key:
+    #     Simple sort by a key:
 
-                        >>> dicts = [{'name': 'Eve'},
-                                     {'name': 'Alice', 'email': 'alice@example.com'},
-                                     {'email': 'bob@example.com', 'name': 'Bob'}]
+    #         >>> dicts = [{'name': 'Eve'},
+    #                      {'name': 'Alice', 'email': 'alice@example.com'},
+    #                      {'email': 'bob@example.com', 'name': 'Bob'}]
 
-                        >>> sort_dictionaries(dicts, ['name'])
-                        [{'name': 'Alice', 'email': 'alice@example.com'},
-                         {'email': 'bob@example.com', 'name': 'Bob'},
-                         {'name': 'Eve'}]
+    #         >>> Sort.dicts.by.value(dicts, ['name'])
+    #         [{'name': 'Alice', 'email': 'alice@example.com'},
+    #          {'email': 'bob@example.com', 'name': 'Bob'},
+    #          {'name': 'Eve'}]
 
-                    Advanced sort for multiple keys with custom sort value:
+    #     Advanced sort for multiple keys with custom sort value:
 
-                        >>> dicts = [{'price': 100},
-                                     {'price': 50, 'shipping': 40},
-                                     {'shipping': 5, 'price': 55}]
+    #         >>> dicts = [{'price': 100},
+    #                      {'price': 50, 'shipping': 40},
+    #                      {'shipping': 5, 'price': 55}]
 
-                        >>> def total(price, shipping):
-                                return price + shipping
+    #         >>> def total(price, shipping):
+    #                 return price + shipping
 
-                        >>> sort_dictionaries(dicts,
-                                              ['price', 'shipping'],
-                                              values=total,
-                                              default=0)
-                        [{'price': 55, 'shipping': 5},
-                         {'price': 50, 'shipping': 40},
-                         {'price': 100}]
+    #         >>> Sort.dicts.by.value(dicts,
+    #                               ['price', 'shipping'],
+    #                               values=total,
+    #                               default=0)
+    #         [{'price': 55, 'shipping': 5},
+    #          {'price': 50, 'shipping': 40},
+    #          {'price': 100}]
 
-                    Sort dictionaries with non string keys:
+    #     Sort dictionaries with non string keys:
 
-                        >>> dicts = [{1: False},
-                                     {2: True, 1: False},
-                                     {1: True, 2: True}]
+    #         >>> dicts = [{1: False},
+    #                      {2: True, 1: False},
+    #                      {1: True, 2: True}]
 
-                        >>> def both(left, right):
-                                return left and right
+    #         >>> def both(left, right):
+    #                 return left and right
 
-                        >>> sort_dictionaries(dicts,
-                                              {1: 'left', 2: 'right'}
-                                              values=both,
-                                              default=False,
-                                              reverse=True)
-                        [{1: True, 2: True}, {1: False}, {1: False, 2: True}]
+    #         >>> Sort.dicts.by.value(dicts,
+    #                               {1: 'left', 2: 'right'}
+    #                               values=both,
+    #                               default=False,
+    #                               reverse=True)
+    #         [{1: True, 2: True}, {1: False}, {1: False, 2: True}]
 
-                Args:
-                    iterable (list(dict)): The input dictonaries.
+    # Args:
+    #     iterable (list(dict)): The input dictonaries.
 
-                    keys (list or dict): Sort by defined keys.
-                        If you have non string keys then `keys` should be a 'dict' instead
-                        of a 'list' with keys, which defines an alternative string repre-
-                        sentation for the non string key (e.g. keys={1: 'one'} instead of
-                        keys=[1]).
-                        If none of the `keys` is present in a 'dict', than it will be re-
-                        moved from the result.
+    #     keys (list or dict): Sort by defined keys.
+    #         If you have non string keys then `keys` should be a 'dict' instead
+    #         of a 'list' with keys, which defines an alternative string repre-
+    #         sentation for the non string key (e.g. keys={1: 'one'} instead of
+    #         keys=[1]).
+    #         If none of the `keys` is present in a 'dict', than it will be re-
+    #         moved from the result.
 
-                    values (function(**kwargs) -> value): Returns the value to sort by.
-                        Defaults to the first value if not specified. The `values` func-
-                        tion receives the defined `keys` as **kwargs. Thus it is possible
-                        to process the values easily by their key name (e.g. lambda a, b:
-                         a + b).
+    #     values (function(**kwargs) -> value): Returns the value to sort by.
+    #         Defaults to the first value if not specified. The `values` func-
+    #         tion receives the defined `keys` as **kwargs. Thus it is possible
+    #         to process the values easily by their key name (e.g. lambda a, b:
+    #          a + b).
 
-                    default (value): Default value value. Defaults to None.
-                        Defines the default value if a specified key from `keys` is not
-                        present or None.
+    #     default (value): Default value value. Defaults to None.
+    #         Defines the default value if a specified key from `keys` is not
+    #         present or None.
 
-                    reverse (bool): Reverse the output list.
+    #     reverse (bool): Reverse the output list.
 
-                Returns:
-                    list: A 'list' of 'dict'.
-                        If none of the `keys` is present in a 'dict', than it will be re-
-                        moved from the result.
+    # Returns:
+    #     list: A 'list' of 'dict'.
+    #         If none of the `keys` is present in a 'dict', than it will be re-
+    #         moved from the result.
 
-                """
-                from tocoli.sort import sort_dicts_by_value
-                return sort_dicts_by_value(iterable, keys, values, default, reverse)
+    #             """
+    #             from tocoli.sort import sort_dicts_by_value
+    #             return sort_dicts_by_value(iterable, keys, values, default, reverse)
 
 
-            @staticmethod
-            def similarity(iterable,
-                             keyword,
-                             keys,
-                             values=return_first_value,
-                             default=None,
-                             reverse=False,
-                             weights=(1, 1),
-                             case_sensitive=False):
-                """Returns a sorted 'list' of 'dict'."""
-                from tocoli.sort import sort_dicts_by_similarity
-                return sort_dicts_by_similarity(iterable,
-                                                 keyword,
-                                                 keys,
-                                                 values,
-                                                 default,
-                                                 reverse,
-                                                 weights,
-                                                 case_sensitive)
+            # @staticmethod
+            # def similarity(iterable,
+            #                  keyword,
+            #                  keys,
+            #                  values=join_args_as_string,
+            #                  default=None,
+            #                  reverse=False,
+            #                  weights=(1, 1),
+            #                  case_sensitive=False):
+            #     """Returns a sorted 'list' of 'dict'."""
+            #     from tocoli.sort import sort_dicts_by_similarity
+            #     return sort_dicts_by_similarity(iterable,
+            #                                      keyword,
+            #                                      keys,
+            #                                      values,
+            #                                      default,
+            #                                      reverse,
+            #                                      weights,
+            #                                      case_sensitive)
 
 
 class Map:
-    from tocoli.map import (identity,
-                            MAP_NONE,
-                            MAP_NUMERIC,
-                            MAP_STR,
-                            MAP_LIST,
-                            MAP_TUPLE,
-                            MAP_SET,
-                            MAP_DICT_KEY,
-                            MAP_DICT_VALUE,
-                            MAP_DICT,
-                            MAP_OTHER,
-                            MAP_ALL,
-                            MAP_DEFAULT)
+    from tocoli.map import (first_arg,
+                            NONE,
+                            NUMERIC,
+                            BYTES,
+                            STR,
+                            LIST,
+                            TUPLE,
+                            SET,
+                            DICT,
+                            DICT_KEY,
+                            DICT_VALUE,
+                            OTHER,
+                            ALL,
+                            DEFAULT)
 
     @staticmethod
-    def any(item, function=identity, flags=MAP_DEFAULT):
+    def any(item, function=first_arg, flags=DEFAULT, parent=None):
         """ Maps any function recursivly to the item. """
         from tocoli.map import map
-        return map(item, function, flags)
+        return map(item, function, flags, parent)
 
 
 class Join:
-    class Strings:
+    class strings:
         class by:
             @staticmethod
             def keywords(list, keywords, join=' '):

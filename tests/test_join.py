@@ -6,6 +6,8 @@
 
 import unittest
 
+from tocoli import PY2
+
 hello = u'Hello'
 world = u'World'
 
@@ -48,3 +50,23 @@ class Tests(unittest.TestCase):
 
         res = join_strings_by_keywords('áíó and äöü'.split(), keywords=['and'])
         self.assertEqual(res, ['áíó äöü'])
+
+    # @unittest.skip("skip this test")
+    def test_join_values_as_string(self):
+        from tocoli.join import join_values_as_string
+
+        res = join_values_as_string(1, 2, 3)
+        self.assertEqual(res, u'123')
+
+        res = join_values_as_string(1, '2', 3.0)
+        self.assertEqual(res, u'123.0')
+
+        res = join_values_as_string(1, '2', 10 / 3.0)
+        if PY2:
+            self.assertEqual(res, u'123.33333333333')
+        else:
+            self.assertEqual(res, u'123.3333333333333335')
+
+
+if __name__ == '__main__':
+    unittest.main()

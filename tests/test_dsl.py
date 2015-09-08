@@ -58,49 +58,49 @@ class TestDSLs(unittest.TestCase):
 
 
         # dict
-        res = Filter.Dict.by.key({1: 'one', 2: 'two'}, [1])
+        res = Filter.dict.by.key({1: 'one', 2: 'two'}, [1])
         self.assertEqual(res, {1: 'one', 2: 'two'})
 
-        res = Filter.Dict.by.key({1: 'one', 2: 'two'}, [3])
+        res = Filter.dict.by.key({1: 'one', 2: 'two'}, [3])
         self.assertEqual(res, None)
 
-        res = Filter.Dict.by.value({1: 'one', 2: 'two'}, ['one'])
+        res = Filter.dict.by.value({1: 'one', 2: 'two'}, ['one'])
         self.assertEqual(res, {1: 'one', 2: 'two'})
 
-        res = Filter.Dict.by.value({1: 'one', 2: 'two'}, ['three'])
+        res = Filter.dict.by.value({1: 'one', 2: 'two'}, ['three'])
         self.assertEqual(res, None)
 
         # Strings
 
-        res = Filter.Strings.by.similarity(['one', 'two', 'three'], ['wo'], ratio=0.5)
+        res = Filter.strings.by.similarity(['one', 'two', 'three'], ['wo'], ratio=0.5)
         self.assertEqual(res, ['two'])
 
-        res = Filter.Strings.by.similarity(['one', 'two', 'three'], ['four'])
+        res = Filter.strings.by.similarity(['one', 'two', 'three'], ['four'])
         self.assertEqual(res, [])
 
-        res = Filter.Strings.by.keywords(['one', 'two', 'three'], ['two'])
+        res = Filter.strings.by.keywords(['one', 'two', 'three'], ['two'])
         self.assertEqual(res, ['two'])
 
-        res = Filter.Strings.by.keywords(['one', 'two', 'three'], ['four'])
+        res = Filter.strings.by.keywords(['one', 'two', 'three'], ['four'])
         self.assertEqual(res, [])
 
         # Dicts
-        res = Filter.Dicts.by.key([{1: 'one', 2: 'two'} , {3: 'three'}], [1])
+        res = Filter.dicts.by.key([{1: 'one', 2: 'two'} , {3: 'three'}], [1])
         self.assertEqual(res, [{1: 'one', 2: 'two'}])
 
-        res = Filter.Dicts.by.key([{1: 'one', 2: 'two'} , {3: 'three'}], [3])
+        res = Filter.dicts.by.key([{1: 'one', 2: 'two'} , {3: 'three'}], [3])
         self.assertEqual(res, [{3: 'three'}])
 
-        res = Filter.Dicts.by.key([{1: 'one', 2: 'two'} , {3: 'three'}], [4])
+        res = Filter.dicts.by.key([{1: 'one', 2: 'two'} , {3: 'three'}], [4])
         self.assertEqual(res, [])
 
-        res = Filter.Dicts.by.value([{1: 'one', 2: 'two'} , {3: 'three'}], ['two'])
+        res = Filter.dicts.by.value([{1: 'one', 2: 'two'} , {3: 'three'}], ['two'])
         self.assertEqual(res, [{1: 'one', 2: 'two'}])
 
-        res = Filter.Dicts.by.value([{1: 'one', 2: 'two'} , {3: 'three'}], ['three'])
+        res = Filter.dicts.by.value([{1: 'one', 2: 'two'} , {3: 'three'}], ['three'])
         self.assertEqual(res, [{3: 'three'}])
 
-        res = Filter.Dicts.by.value([{1: 'one', 2: 'two'} , {3: 'three'}], ['four'])
+        res = Filter.dicts.by.value([{1: 'one', 2: 'two'} , {3: 'three'}], ['four'])
         self.assertEqual(res, [])
 
 
@@ -145,28 +145,28 @@ class TestDSLs(unittest.TestCase):
         self.assertEqual(res, [1, 2, 3])
 
         # dict
-        res = Sort.Dict.by.key({2: 'a', 1:'c', 3: 'b'})
+        res = Sort.dict.by.key({2: 'a', 1:'c', 3: 'b'})
         self.assertEqual(res, [(1, 'c'), (2, 'a'), (3, 'b')])
 
-        res = Sort.Dict.by.key({2: 'a', 1:'c', 3: 'b'}, reverse=True)
+        res = Sort.dict.by.key({2: 'a', 1:'c', 3: 'b'}, reverse=True)
         self.assertEqual(res, [(3, 'b'), (2, 'a'), (1, 'c')])
 
-        res = Sort.Dict.by.value({3: 'a', 4: 'c', 1: 'b', 2: 'd'})
+        res = Sort.dict.by.value({3: 'a', 4: 'c', 1: 'b', 2: 'd'})
         self.assertEqual(res, [(3, 'a'), (1, 'b'), (4, 'c'), (2, 'd')])
 
-        res = Sort.Dict.by.value({3: 'a', 4: 'c', 1: 'b', 2: 'd'}, reverse=True)
+        res = Sort.dict.by.value({3: 'a', 4: 'c', 1: 'b', 2: 'd'}, reverse=True)
         self.assertEqual(res, [(2, 'd'), (4, 'c'), (1, 'b'), (3, 'a')])
 
         # Strings
         l = ['schnello', 'bello', 'ello', 'Hello', 'hello', 'trello']
 
-        res = Sort.Strings.by.similarity(l, 'hello')
+        res = Sort.strings.by.similarity(l, 'hello')
         self.assertEqual(res, ['trello', 'schnello', 'bello', 'ello', 'Hello', 'hello'])
 
-        res = Sort.Strings.by.similarity(l, 'hello', reverse=True)
+        res = Sort.strings.by.similarity(l, 'hello', reverse=True)
         self.assertEqual(res, ['Hello', 'hello', 'ello', 'bello', 'schnello', 'trello'])
 
-        res = Sort.Strings.by.similarity(l, 'hello', reverse=True, weights=(1,0))
+        res = Sort.strings.by.similarity(l, 'hello', reverse=True, weights=(1,0))
         self.assertEqual(res, ['Hello', 'hello', 'bello', 'ello', 'schnello', 'trello'])
 
 
@@ -177,7 +177,7 @@ class TestDSLs(unittest.TestCase):
                  {'name': 'Alice', 'email': 'alice@example.com'},
                  {'email': 'bob@example.com', 'name': 'Bob'}]
 
-        res = Sort.Dicts.by.value(dicts, ['name'])
+        res = Sort.dicts.by.value(dicts, ['name'])
         self.assertEqual(res,
                          [{'name': 'Alice', 'email': 'alice@example.com'},
                           {'email': 'bob@example.com', 'name': 'Bob'},
@@ -193,7 +193,7 @@ class TestDSLs(unittest.TestCase):
         def total(price, shipping):
             return price + shipping
 
-        res = Sort.Dicts.by.value(dicts,
+        res = Sort.dicts.by.value(dicts,
                          ['price', 'shipping'],
                          values=total,
                          default=0)
@@ -212,7 +212,7 @@ class TestDSLs(unittest.TestCase):
         def both(left, right):
             return left and right
 
-        res = Sort.Dicts.by.value(dicts,
+        res = Sort.dicts.by.value(dicts,
                          {1: 'left', 2: 'right'},
                          values=both,
                          default=False,
@@ -232,7 +232,7 @@ class TestDSLs(unittest.TestCase):
                  {'word': 'hello'},
                  {'word': 'trello'}]
 
-        res = Sort.Dicts.by.similarity(dicts, 'hello', ['word'])
+        res = Sort.dicts.by.similarity(dicts, u'hello', ['word'])
         self.assertEqual(res, [{'word': 'trello'},
                                {'word': 'schnello'},
                                {'word': 'bello'},
@@ -240,7 +240,7 @@ class TestDSLs(unittest.TestCase):
                                {'word': 'Hello'},
                                {'word': 'hello'}])
 
-        res = Sort.Dicts.by.similarity(dicts, 'hello', ['word'], reverse=True)
+        res = Sort.dicts.by.similarity(dicts, u'hello', ['word'], reverse=True)
         self.assertEqual(res, [{'word': 'Hello'},
                                {'word': 'hello'},
                                {'word': 'ello'},
@@ -251,7 +251,7 @@ class TestDSLs(unittest.TestCase):
     def test_class_Map(self):
         from tocoli.dsl import Map
 
-        def upper(s):
+        def upper(s, _):
             return s.upper()
 
         # mixed
@@ -267,37 +267,37 @@ class TestDSLs(unittest.TestCase):
     def test_class_Join(self):
         from tocoli.dsl import Join
 
-        res = Join.Strings.by.keywords('Hello World'.split(), ['do not join anything'])
+        res = Join.strings.by.keywords('Hello World'.split(), ['do not join anything'])
         self.assertEqual(res, ['Hello', 'World'])
 
-        res = Join.Strings.by.keywords('Hello and World'.split(), keywords=['and'])
+        res = Join.strings.by.keywords('Hello and World'.split(), keywords=['and'])
         self.assertEqual(res, ['Hello World'])
 
-        res = Join.Strings.by.keywords('Hello AND World'.split(), keywords=['and'])
+        res = Join.strings.by.keywords('Hello AND World'.split(), keywords=['and'])
         self.assertEqual(res, ['Hello World'])
 
-        res = Join.Strings.by.keywords('Hello  +  World'.split(), keywords=['+', '-'])
+        res = Join.strings.by.keywords('Hello  +  World'.split(), keywords=['+', '-'])
         self.assertEqual(res, ['Hello World'])
 
-        res = Join.Strings.by.keywords('Hello  -  World'.split(), keywords=['+', '-'])
+        res = Join.strings.by.keywords('Hello  -  World'.split(), keywords=['+', '-'])
         self.assertEqual(res, ['Hello World'])
 
-        res = Join.Strings.by.keywords(' - Hello + World'.split(), keywords=['+', '-'])
+        res = Join.strings.by.keywords(' - Hello + World'.split(), keywords=['+', '-'])
         self.assertEqual(res, ['Hello World'])
 
-        res = Join.Strings.by.keywords('Hello + World - '.split(), keywords=['+', '-'])
+        res = Join.strings.by.keywords('Hello + World - '.split(), keywords=['+', '-'])
         self.assertEqual(res, ['Hello World'])
 
-        res = Join.Strings.by.keywords(' - Hello + World - '.split(), keywords=['+', '-'])
+        res = Join.strings.by.keywords(' - Hello + World - '.split(), keywords=['+', '-'])
         self.assertEqual(res, ['Hello World'])
 
-        res = Join.Strings.by.keywords('one + two + three + four'.split(), keywords=['+', '-'])
+        res = Join.strings.by.keywords('one + two + three + four'.split(), keywords=['+', '-'])
         self.assertEqual(res, ['one two three four'])
 
-        res = Join.Strings.by.keywords('áíó äöü'.split(), ['do not join anything'])
+        res = Join.strings.by.keywords('áíó äöü'.split(), ['do not join anything'])
         self.assertEqual(res, ['áíó', 'äöü'])
 
-        res = Join.Strings.by.keywords('áíó and äöü'.split(), keywords=['and'])
+        res = Join.strings.by.keywords('áíó and äöü'.split(), keywords=['and'])
         self.assertEqual(res, ['áíó äöü'])
 
 

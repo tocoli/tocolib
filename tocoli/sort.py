@@ -5,10 +5,34 @@
 # @author: Sebastian Wiesendahl <sebastian@wiesendahl.de>
 
 from tocoli import PY2
-from tocoli.fn import return_first_value
-from tocoli.ratio import similarity as sim
+from tocoli.join import join_values_as_string
 
-def sort_dicts_by_value(iterable, keys, values=return_first_value, default=None, reverse=False):
+
+def sort_dict_by_key(d, reverse=False):
+    """Returns a 'list' of tuple(key, value)."""
+    from collections import OrderedDict
+    def key(t):
+        return t[0]
+
+    if PY2:
+        return sorted(OrderedDict(d).iteritems(), key=key, reverse=reverse)
+    else:
+        return sorted(OrderedDict(d).items(), key=key, reverse=reverse)
+
+
+def sort_dict_by_value(d, reverse=False):
+    """Returns a 'list' of tuple(key, value)."""
+    from collections import OrderedDict
+    def value(t):
+        return t[1]
+
+    if PY2:
+        return sorted(OrderedDict(d).iteritems(), key=value, reverse=reverse)
+    else:
+        return sorted(OrderedDict(d).items(), key=value, reverse=reverse)
+
+
+def sort_dicts_by_value(iterable, keys, values=join_values_as_string, default=None, reverse=False):
     """Sort a list of dictionaries as you like!
 
     Sort dictionaries which are in a 'list'. The functional `where` parameter
@@ -114,12 +138,13 @@ def sort_dicts_by_value(iterable, keys, values=return_first_value, default=None,
 def sort_dicts_by_similarity(iterable,
                              keyword,
                              keys,
-                             values=return_first_value,
+                             values=join_values_as_string,
                              default=None,
                              reverse=False,
                              weights=(1, 1),
                              case_sensitive=False):
     """Returns a sorted 'list' of 'dict'."""
+    from tocoli.ratio import similarity as sim
 
     def similarity(**kwargs):
         return sim(values(**kwargs), keyword, weights, case_sensitive)
@@ -129,33 +154,10 @@ def sort_dicts_by_similarity(iterable,
 
 def sort_strings_by_similarity(iterable, keyword, reverse=False, weights=(1,1), case_sensitive=False):
     """Returns a sorted 'list'."""
+    from tocoli.ratio import similarity as sim
 
     def similarity(value):
         return sim(value, keyword, weights, case_sensitive)
 
     return sorted(iterable, key=similarity, reverse=reverse)
-
-
-def sort_dict_by_key(d, reverse=False):
-    """Returns a 'list' of tuple(key, value)."""
-    from collections import OrderedDict
-    def key(t):
-        return t[0]
-
-    if PY2:
-        return sorted(OrderedDict(d).iteritems(), key=key, reverse=reverse)
-    else:
-        return sorted(OrderedDict(d).items(), key=key, reverse=reverse)
-
-
-def sort_dict_by_value(d, reverse=False):
-    """Returns a 'list' of tuple(key, value)."""
-    from collections import OrderedDict
-    def value(t):
-        return t[1]
-
-    if PY2:
-        return sorted(OrderedDict(d).iteritems(), key=value, reverse=reverse)
-    else:
-        return sorted(OrderedDict(d).items(), key=value, reverse=reverse)
 

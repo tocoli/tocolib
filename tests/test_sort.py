@@ -75,7 +75,7 @@ class Tests(unittest.TestCase):
                  {'word': 'hello'},
                  {'word': 'trello'}]
 
-        res = sort_dicts_by_similarity(dicts, 'hello', ['word'])
+        res = sort_dicts_by_similarity(dicts, u'hello', ['word'])
         self.assertEqual(res, [{'word': 'trello'},
                                {'word': 'schnello'},
                                {'word': 'bello'},
@@ -83,7 +83,7 @@ class Tests(unittest.TestCase):
                                {'word': 'Hello'},
                                {'word': 'hello'}])
 
-        res = sort_dicts_by_similarity(dicts, 'hello', ['word'], reverse=True)
+        res = sort_dicts_by_similarity(dicts, u'hello', ['word'], reverse=True)
         self.assertEqual(res, [{'word': 'Hello'},
                                {'word': 'hello'},
                                {'word': 'ello'},

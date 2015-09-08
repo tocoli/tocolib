@@ -51,3 +51,9 @@ def to_integer(input):
         else:
             return 0
 
+
+def to_string(input, encoding='utf-8'):
+    if PY2:
+        return unicode(input)
+    else:
+        return str(input)

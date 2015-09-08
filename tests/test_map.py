@@ -7,22 +7,33 @@
 import unittest
 from tocoli import PY2
 
+from tocoli import iteritems
 
 class Tests(unittest.TestCase):
 
     # @unittest.skip("skip this test")
     def test_map(self):
-        from tocoli.map import map
+        from tocoli.map import map, DICT
 
-        def add_five(a):
+        def add_five(a, _):
             return a + 5
 
-        def decode(b, encoding='utf-8'):
+        def decode(b, _, encoding='utf-8'):
             from codecs import decode
             return decode(b, encoding)
 
-        def upper(s):
+        def upper(s, _):
             return s.upper()
+
+        # default
+        self.assertEqual(map(1), 1)
+        self.assertEqual(map(1.0), 1.0)
+        self.assertEqual(map(complex(0,4)), complex(0,4))
+        if PY2:
+            self.assertEqual(map('hello'), 'hello')
+        else:
+            self.assertEqual(map(bytes('hello', 'utf-8')), b'hello')
+
 
         # integers
         res = map(5, add_five)
@@ -84,6 +95,17 @@ class Tests(unittest.TestCase):
         res = map(d, upper)
         self.assertEqual(res, {1: ['A', 'B', 'C'], 2: ['A', 'B', 'C'], 3: ['A', 'B', 'C']})
 
+
+        def upper_dict_values(item, _):
+            for k, v in iteritems(d):
+                if hasattr(v, '__iter__'):
+                    d[k] = [elem.upper() for elem in v]
+                else:
+                    d[k] = elem.upper()
+            return d
+
+        res = map(d, upper_dict_values, DICT)
+        self.assertEqual(res, {1: ['A', 'B', 'C'], 2: ['A', 'B', 'C'], 3: ['A', 'B', 'C']})
 
 
 if __name__ == '__main__':
