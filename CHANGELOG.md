@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+
+
+## [0.2.0][2015-09-09]
 ### Changed
 * The former ``dsl`` module is now an own subpackage.
 * The `keys` parameter notation for sorting functions changed.
@@ -27,4 +30,5 @@ new modules:
     type - type conversion utilities
 
 [unreleased]: https://bitbucket.org/tocoli/tocolib/commits/branch/develop
+[0.2.0]: https://bitbucket.org/tocoli/tocolib/commits/tag/0.2.0
 [0.1.0]: https://bitbucket.org/tocoli/tocolib/commits/tag/0.1.0
