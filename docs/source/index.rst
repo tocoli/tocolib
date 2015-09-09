@@ -5,10 +5,13 @@
 
 .. include:: ../../DESCRIPTION.rst
 
-Contents:
+Contents
+>>>>>>>>
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
+
+   tocoli
 
 
 Indices and tables

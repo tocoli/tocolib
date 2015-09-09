@@ -6,6 +6,7 @@ Subpackages
 
 .. toctree::
 
+    tocoli.dsl
     tocoli.py2
     tocoli.py3
 
@@ -16,14 +17,6 @@ tocoli.cmp module
 -----------------
 
 .. automodule:: tocoli.cmp
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-tocoli.dsl module
------------------
-
-.. automodule:: tocoli.dsl
     :members:
     :undoc-members:
     :show-inheritance:
@@ -96,14 +89,6 @@ tocoli.spell module
 -------------------
 
 .. automodule:: tocoli.spell
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-tocoli.string module
---------------------
-
-.. automodule:: tocoli.string
     :members:
     :undoc-members:
     :show-inheritance:

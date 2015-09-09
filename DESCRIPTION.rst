@@ -1,73 +1,162 @@
 tocolib
 =======
 
-The tocolib is a multipurpose utility library.
+A multipurpose utility library for Python 2 and 3.
 
 
-Structure
----------
+Highlights
+----------
 
-    :namespace:
+Sorting dictionaries
+>>>>>>>>>>>>>>>>>>>>
 
-        |   ``tocoli``  - six (Python 2 and 3 compatibility utilities) and more
+    Sort a 'list' of 'dict' by simply defining the `keys` you like to sort
+    by.
 
-    :modules:
+    Example:
 
+        >>> dicts = [{'firstname': 'Bob',   'lastname': 'Abel'},
+                     {'firstname': 'Alice', 'lastname': 'Bond'},
+                     {'firstname': 'Carol', 'lastname': 'Bond'},
+                     {'firstname': 'Bob',   'lastname': 'Bond'},
+                     {'firstname': 'Carol', 'lastname': 'Abel'},
+                     {'firstname': 'Alice', 'lastname': 'Abel'}]
 
-        |   ``cmp``     - compare utilities
-        |               For those who like to compare apples with pears.
+        >>> from tocoli.sort import sort_dicts_by_value
+        >>> sort_dicts_by_value(dicts, ['lastname', 'firstname'])
+        [{'firstname': 'Alice', 'lastname': 'Abel'},
+         {'firstname': 'Bob',   'lastname': 'Abel'},
+         {'firstname': 'Carol', 'lastname': 'Abel'},
+         {'firstname': 'Alice', 'lastname': 'Bond'},
+         {'firstname': 'Bob',   'lastname': 'Bond'},
+         {'firstname': 'Carol', 'lastname': 'Bond'}]
 
-        |    ``dsl``    - python like it should be.
-        |               The module is a wrapper for other `tocoli` modules. It
-        |               contains a domain specific language for common functions
-        |               like filtering, sorting, mapping and more. All functions
-        |               have a consistent API and results.
+A Domain Specific Language for `tocolib`
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-        |   ``enc``     - encoding
-        |               Provides universal and powerful encoding functions.
+    The ``dsl`` package provides a coherent style to access the `tocolib`
+    modules and functions as module or static class functions.
 
-        |   ``filter`` - filter functions
+    Example:
 
-        |   ``fn``     - common lambda functions
+        >>> from tocoli.dsl import sort
 
-        |   ``join``   - join functions
+        >>> sort.dicts.by.value(dicts, ['lastname', 'firstname'])
+        [{'firstname': 'Alice', 'lastname': 'Abel'},
+         {'firstname': 'Bob',   'lastname': 'Abel'},
+         {'firstname': 'Carol', 'lastname': 'Abel'},
+         {'firstname': 'Alice', 'lastname': 'Bond'},
+         {'firstname': 'Bob',   'lastname': 'Bond'},
+         {'firstname': 'Carol', 'lastname': 'Bond'}]
 
-        |   ``map``    - recursive mapping
+        >>> sort.dicts.by.similarity(dicts, 'Karol', ['firstname'])
+        [{'firstname': 'Carol', 'lastname': 'Bond'},
+         {'firstname': 'Carol', 'lastname': 'Abel'},
+         {'firstname': 'Alice', 'lastname': 'Bond'},
+         {'firstname': 'Alice', 'lastname': 'Abel'},
+         {'firstname': 'Bob',   'lastname': 'Abel'},
+         {'firstname': 'Bob',   'lastname': 'Bond'}]
 
-        |   ``ratio``  - ratio functions
-        |              Provides ratio functions for varios purposes.
+Powerful mapping
+>>>>>>>>>>>>>>>>
 
-        |   ``regex``  - regular expression utilities
-        |              Contains helper functions to generate common regular expressions.
+    Use recursive mapping to apply functions to nested data structures.
 
-        |   ``sort``   - sort functions
+    Example:
 
-        |   ``spell``  - spelling utilities
+        >>> from tocoli.dsl import map
 
-        |   ``string`` - string functions
+        >>> def upper(item, parent):
+                return item.upper()
 
-        |   ``test``   - testing and benchmarking
+        >>> map.recursive(dicts, upper)
+        [{'firstname': 'BOB', 'lastname': 'ABEL'},
+         {'firstname': 'ALICE', 'lastname': 'BOND'},
+         {'firstname': 'CAROL', 'lastname': 'BOND'},
+         {'firstname': 'BOB', 'lastname': 'BOND'},
+         {'firstname': 'CAROL', 'lastname': 'ABEL'},
+         {'firstname': 'ALICE', 'lastname': 'ABEL'}]
 
-        |   ``type``   - type conversion utilities
+        >>> map_keys = (map.DEFAULT | map.DICT_KEY) ^ map.DICT_VALUE
+        >>> map.recursive(dicts, upper, map_keys)
+        [{'FIRSTNAME': 'Bob', 'LASTNAME': 'Abel'},
+         {'FIRSTNAME': 'Alice', 'LASTNAME': 'Bond'},
+         {'FIRSTNAME': 'Carol', 'LASTNAME': 'Bond'},
+         {'FIRSTNAME': 'Bob', 'LASTNAME': 'Bond'},
+         {'FIRSTNAME': 'Carol', 'LASTNAME': 'Abel'},
+         {'FIRSTNAME': 'Alice', 'LASTNAME': 'Abel'}]
 
 
 What's New
 ----------
 
-    * The tocolib proudly supports Python 2 and 3.
-        The library makes internally usage of the six utilities to provide
-        universal Python 2 and 3 support.
+* The former ``dsl`` module is now an own subpackage.
+* The `keys` parameter notation for sorting functions changed.
+* There are new `flags` paramter options for mapping functions.
 
-    * Sorting functions are easier to use.
-        Sorting dictionaries by value can now be achieved with **kwargs, which
-        enables custom naming for keys.
+For more detailed information on current changes check the ``CHANGELOG.md``.
 
-    * Powerful mapping.
-        Use the recursive mapping to apply functions to complex data struc-
-        tures.
 
-    * Meta ratio:
-        The meta() function from module `ratio` can combine varios ratios in a
-        weighted manner.
+Structure
+---------
 
-For more information on current changes check the `CHANGELOG.md`.
+Namespace
+>>>>>>>>>
+
+``tocoli``  **- root**
+    Includes the six library (Python 2 and 3 compatibility utilities) at the
+    root.
+
+
+Subpackages
+>>>>>>>>>>>
+
+``dsl``     **- a domain specific language for tocolib**
+    Python, like it should be. The module contains a domain specific language
+    for common functions like filtering, sorting, mapping and more. All
+    functions have a consistent API and results.
+
+
+Modules
+>>>>>>>
+
+``cmp``     **- compare utilities**
+    For those who like to compare apples with pears. Make different data types
+    comparable.
+
+``enc``     **- encoding functions**
+    Encoding without pain. Provides universal encoding functions.
+
+``filter``  **- filter functions**
+    The good ones go into the pot, the bad ones go into your crop. Advanced
+    functions to filter dictionaries or lists of strings.
+
+``fn``      **- common lambda functions**
+    To Be or not to Be: That is the question! Short value extractor functions
+    and more.
+
+``join``    **- join/reduce/folding functions**
+    Bring together what belongs together.
+
+``map``     **- mapping functions**
+    It's still magic even if you know how it's done. Map data by applying any
+    higher-order function to it.
+
+``ratio``   **- ratio functions**
+    Comparisons make unhappy, but can be quite useful. Provides ratio
+    functions for varios purposes.
+
+``regex``   **- regular expression utilities**
+    Find what you are searching for. Generate common regular expressions.
+
+``sort``    **- sort functions**
+    Chuck Norris is able to sort black pens by color. Sort data by value or keys.
+
+``spell``   **- spelling utilities**
+    Life doesn't come with spell-check, but tocolib does.
+
+``test``    **- testing and benchmarking**
+    Tests cant prove the absence of bugs. Thus test as good as you can.
+
+``type``    **- type conversion utilities**
+    What doesn't fit is made to fit. Universal type transformations.

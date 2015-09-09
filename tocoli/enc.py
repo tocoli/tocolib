@@ -30,7 +30,7 @@ def encode(input, encoding='utf-8', errors='strict', input_encoding='utf-8'):
         Advanced codec support::
 
             >>> encode('café', 'base64')
-            b'Y2Fmw6k=\n'       # base64 encoded byte string
+            b'Y2Fmw6k=\\n'       # base64 encoded byte string
                                 # inner encoding is always utf-8
 
     Args:
@@ -94,7 +94,7 @@ def decode(input, encoding='utf-8', errors='strict', detect='utf-8'):
 
         Advanced codec support::
 
-            >>> encode('Y2Fmw6k=\n', 'base64')
+            >>> encode('Y2Fmw6k=\\n', 'base64')
             u'café'     # utf-8 decoded string
 
     Args:

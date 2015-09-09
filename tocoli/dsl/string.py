@@ -4,10 +4,9 @@
 # @copyright: © 2015 Sebastian Wiesendahl. All rights reserved.
 # @author: Sebastian Wiesendahl <sebastian@wiesendahl.de>
 
-import unittest
-from tocoli.fn import *
-from tocoli import fn
 
+from tocoli.filter import clean
 
-if __name__ == '__main__':
-    unittest.main()
+class strip:
+    from tocoli.map import map_to_non_accented_characters as accents
+    accents = staticmethod(accents)

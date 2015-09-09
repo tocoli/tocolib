@@ -12,8 +12,8 @@ from tocoli import iteritems
 class Tests(unittest.TestCase):
 
     # @unittest.skip("skip this test")
-    def test_map(self):
-        from tocoli.map import map, DICT
+    def test_recursive_map(self):
+        from tocoli.map import recursive_map, DICT
 
         def add_five(a, _):
             return a + 5
@@ -26,17 +26,17 @@ class Tests(unittest.TestCase):
             return s.upper()
 
         # default
-        self.assertEqual(map(1), 1)
-        self.assertEqual(map(1.0), 1.0)
-        self.assertEqual(map(complex(0,4)), complex(0,4))
+        self.assertEqual(recursive_map(1), 1)
+        self.assertEqual(recursive_map(1.0), 1.0)
+        self.assertEqual(recursive_map(complex(0,4)), complex(0,4))
         if PY2:
-            self.assertEqual(map('hello'), 'hello')
+            self.assertEqual(recursive_map('hello'), 'hello')
         else:
-            self.assertEqual(map(bytes('hello', 'utf-8')), b'hello')
+            self.assertEqual(recursive_map(bytes('hello', 'utf-8')), b'hello')
 
 
         # integers
-        res = map(5, add_five)
+        res = recursive_map(5, add_five)
         self.assertEqual(res, 10)
 
 
@@ -46,53 +46,53 @@ class Tests(unittest.TestCase):
         else:
             b = 'café'.encode('utf-8')
 
-        res = map(b, decode)
+        res = recursive_map(b, decode)
         self.assertEqual(res, u'café')
 
         # string
         s = u'café'
-        res = map(s, upper)
+        res = recursive_map(s, upper)
         self.assertEqual(res, u'CAFÉ')
 
         # list
         l = [1, 2, 3]
-        res = map(l, add_five)
+        res = recursive_map(l, add_five)
         self.assertEqual(res, [6, 7, 8])
 
         l = ['a', 'b', u'c']
-        res = map(l, upper)
+        res = recursive_map(l, upper)
         self.assertEqual(res, ['A', 'B', u'C'])
 
         # tuple
         t = (1, 2, 3)
-        res = map(t, add_five)
+        res = recursive_map(t, add_five)
         self.assertEqual(res, (6, 7, 8))
 
         t = ('a', 'b', u'c')
-        res = map(t, upper)
+        res = recursive_map(t, upper)
         self.assertEqual(res, ('A', 'B', u'C'))
 
         # set
         s = {1, 2, 3}
-        res = map(s, add_five)
+        res = recursive_map(s, add_five)
         self.assertEqual(res, {6, 7, 8})
 
         s = {'a', 'b', u'c'}
-        res = map(s, upper)
+        res = recursive_map(s, upper)
         self.assertEqual(res, {'A', 'B', u'C'})
 
         # dict
         d = {1: 'one', 2: 'two', 3: 'three'}
-        res = map(d, upper)
+        res = recursive_map(d, upper)
         self.assertEqual(res, {1: 'ONE', 2: 'TWO', 3: 'THREE'})
 
         # mixed
         l = [{1: 'one', 2: 'two', 3: 'three'}, {4: 'four', 5: 'five', 6: 'six'}]
-        res = map(l, upper)
+        res = recursive_map(l, upper)
         self.assertEqual(res, [{1: 'ONE', 2: 'TWO', 3: 'THREE'}, {4: 'FOUR', 5: 'FIVE', 6: 'SIX'}])
 
         d = {1: ['a', 'b', 'c'], 2: ['a', 'b', 'c'], 3: ['a', 'b', 'c']}
-        res = map(d, upper)
+        res = recursive_map(d, upper)
         self.assertEqual(res, {1: ['A', 'B', 'C'], 2: ['A', 'B', 'C'], 3: ['A', 'B', 'C']})
 
 
@@ -104,8 +104,16 @@ class Tests(unittest.TestCase):
                     d[k] = elem.upper()
             return d
 
-        res = map(d, upper_dict_values, DICT)
+        res = recursive_map(d, upper_dict_values, DICT)
         self.assertEqual(res, {1: ['A', 'B', 'C'], 2: ['A', 'B', 'C'], 3: ['A', 'B', 'C']})
+
+
+    # @unittest.skip("skip this test")
+    def test_map_to_non_accented_characters(self):
+        from tocoli.map import map_to_non_accented_characters
+
+        res = map_to_non_accented_characters(u'áíóäöü')
+        self.assertEqual(res, u'aioaou')
 
 
 if __name__ == '__main__':

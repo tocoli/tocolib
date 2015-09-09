@@ -1,5 +1,5 @@
-.
-=
+tocoli
+======
 
 .. toctree::
    :maxdepth: 4

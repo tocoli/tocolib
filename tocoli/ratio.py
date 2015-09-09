@@ -4,9 +4,13 @@
 # @copyright: © 2015 Sebastian Wiesendahl. All rights reserved.
 # @author: Sebastian Wiesendahl <sebastian@wiesendahl.de>
 
-from tocoli.string import count_equal_chars
 from tocoli.cmp import comparable
 from Levenshtein import ratio as levenshtein
+
+
+def count_equal_chars(str1, str2):
+    return len(set(str1) & set(str2))
+
 
 class Nominator:
     MIN = 'min'

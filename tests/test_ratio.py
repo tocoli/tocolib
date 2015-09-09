@@ -14,6 +14,31 @@ world = u'World'
 
 class TestRatios(unittest.TestCase):
 
+
+    # @unittest.skip("skip this test")
+    def test_count_equal_chars(self):
+
+        self.assertRaises(TypeError, count_equal_chars, None, None)
+
+        res = count_equal_chars('', '')
+        self.assertEqual(res, 0)
+
+        res = count_equal_chars('a', 'b')
+        self.assertEqual(res, 0)
+
+        res = count_equal_chars('a', 'a')
+        self.assertEqual(res, 1)
+
+        res = count_equal_chars(u'a', u'a')
+        self.assertEqual(res, 1)
+
+        res = count_equal_chars(hello, world)
+        self.assertEqual(res, 2)
+
+        res = count_equal_chars(world, hello)
+        self.assertEqual(res, 2)
+
+
     # @unittest.skip("skip this test")
     def test_equal(self):
 

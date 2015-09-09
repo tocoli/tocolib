@@ -5,7 +5,7 @@
 # @author: Sebastian Wiesendahl <sebastian@wiesendahl.de>
 
 from tocoli.type import to_string
-from tocoli.map import map
+from tocoli.map import recursive_map
 
 def join_strings_by_keywords(list, keywords, join=' '):
     """Join strings by keywords. Returns a new list with joined strings."""
@@ -37,5 +37,5 @@ def join_strings_by_keywords(list, keywords, join=' '):
 
 def join_values_as_string(*args, **kwargs):
     """Concatenates all values as one string. Returns a string."""
-    return u''.join(
-        map(args + tuple(kwargs[k] for k in sorted(kwargs)), to_string))
+    return u''.join(recursive_map(
+        args + tuple(kwargs[k] for k in sorted(kwargs)), to_string))

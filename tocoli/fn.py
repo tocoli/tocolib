@@ -28,7 +28,11 @@ def identity_values(*args, **kwargs):
     return args + tuple(v for v in itervalues(kwargs))
 
 
-def return_first_value(**kwargs):
+def negate(x):
+    return not x
+
+
+def first_kwarg(**kwargs):
     for k in kwargs:
         return kwargs[k]
     return None
