@@ -4,9 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 ### Changed
-    * The former ``dsl`` module is now an own subpackage.
-    * The `keys` parameter notation for sorting functions changed.
-    * There are new `flags` paramter options for mapping functions.
+* The former ``dsl`` module is now an own subpackage.
+* The `keys` parameter notation for sorting functions changed.
+* There are new `flags` paramter options for mapping functions.
 
 ## [0.1.0] - 2015-09-07
 ### Added
