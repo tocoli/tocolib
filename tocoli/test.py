@@ -5,6 +5,7 @@
 # @author: Sebastian Wiesendahl <sebastian@wiesendahl.de>
 
 from time import time
+from numpy import array, median
 
 
 def arguments(args=None, kwargs=None):
@@ -62,27 +63,45 @@ class Bencher:
     def bench(self, function, *args, **kwargs):
         res = []
 
-        benched = 0.0
+        t = 0.0
+        m = None
+        b = []
         r = range(self.rounds)
 
         for _ in r:
             start = time()
             r = function(*args, **kwargs)
             end = time()
-            benched += (end - start)
+            diff = end - start
+            t += diff
+
+            b.append(diff)
+            if len(b) > 1000:
+                if m is None:
+                    m = median(array(b))
+                else:
+                    m = (m + median(array(b))) / float(2)
+                b = []
 
             if self.collect:
                 res.append(r)
-            else:
-                res = r
+
+        if m is None:
+            m = median(array(b))
+        else:
+            m = (m + median(array(b))) / float(2)
+        a = t / float(self.rounds)
 
         if self.stopwatch:
             print(seperator(seperator=self.seperator, width=self.width))
             print('benched: {}{} '.format(function.__name__, arguments(args, kwargs)))
-            print('{} times '.format(self.rounds) if self.rounds > 1 else '{} time '.format(self.rounds) +
-                 ('{:{}f}s (avg) ').format(benched / float(self.rounds), self.precision) +
-                 ('{:{}f}s (total)').format(benched, self.precision))
+            print('{} times '.format(self.rounds) if self.rounds > 1 else '{} time '.format(self.rounds))
+            print('{:{}f}s (median) '.format(m, self.precision))
+            print('{:{}f}s (average) '.format(a, self.precision))
+            print('{:{}f}s (total) '.format(t, self.precision))
 
+        if not self.collect:
+            res = r
         return res
 
 bench = Bencher().bench
