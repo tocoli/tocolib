@@ -10,7 +10,7 @@ from time import time
 def arguments(args=None, kwargs=None):
     r = '('
 
-    if len(args) > 0:
+    if args is not None and len(args) > 0:
         r += ', '.join(tuple("'" + v + "'"
             if isinstance(v, str) else
         v.__class__.__name__ + ' #' + str(len(v))
@@ -20,7 +20,7 @@ def arguments(args=None, kwargs=None):
         str(v)
             for v in args))
 
-    if len(kwargs) > 0:
+    if kwargs is not None and len(kwargs) > 0:
         if len(args) > 0:
             r += ', '
         r += ', '.join(tuple(str(k) + '=' + "'" + str(kwargs[k]) + "'"
@@ -36,6 +36,19 @@ def arguments(args=None, kwargs=None):
     return r
 
 
+def seperator(str='', seperator='-', width=80):
+
+    if width is None or width < 0:
+        import os
+        _, width = os.popen('stty size', 'r').read().split()
+        width = int(width) - 1
+
+    for _ in range(width - len(str)):
+        str += seperator
+
+    return str
+
+
 class Bencher:
 
     def __init__(self, rounds=1, collect=False, stopwatch=True, precision='0.8'):
@@ -43,6 +56,8 @@ class Bencher:
         self.collect = collect
         self.stopwatch = stopwatch
         self.precision = precision
+        self.seperator = '-'
+        self.width = None
 
     def bench(self, function, *args, **kwargs):
         res = []
@@ -62,39 +77,46 @@ class Bencher:
                 res = r
 
         if self.stopwatch:
-            print('benched: ' + function.__name__ + arguments(args, kwargs))
-            print('rounds:  ' + str(self.rounds))
-            print('average: ' + ('{:{}f}').format(benched / float(self.rounds), self.precision) + 's')
-            print('total:   ' + ('{:{}f}').format(benched, self.precision) + 's')
-            print('')
+            print(seperator(seperator=self.seperator, width=self.width))
+            print('benched: {}{} '.format(function.__name__, arguments(args, kwargs)))
+            print('{} times '.format(self.rounds) if self.rounds > 1 else '{} time '.format(self.rounds) +
+                 ('{:{}f}s (avg) ').format(benched / float(self.rounds), self.precision) +
+                 ('{:{}f}s (total)').format(benched, self.precision))
 
         return res
 
 bench = Bencher().bench
 
 
-def fnprint(function, *args, **kwargs):
-    from pprint import pprint
+class FnPrinter():
 
-    def sep(s, sep='<', width=80):
-        for _ in range(width - len(s)):
-            s += sep
-        return s
+    def __init__(self, seperator='-', width=None):
+        self.seperator = seperator
+        self.width = width
 
-    print('')
-    print(sep('>>> ' + function.__name__ + arguments(args, kwargs) + ' '))
-    res = function(*args, **kwargs)
-    pprint(res)
+    def fnprint(self, function, *args, **kwargs):
+        from pprint import pprint
 
-    stat = []
-    stat.append("type '" + res.__class__.__name__ + "'")
-    if hasattr(res, '__iter__'):
-        types = []
-        for e in res:
-            types.append(e.__class__.__name__)
-        stat.append(list(set(types)))
-    if hasattr(res, '__len__'):
-        stat.append(' #' + str(len(res)))
-    print(''.join(map(str, stat)))
+        print('')
+        print(seperator(
+            '>>> ' + function.__name__ + arguments(args, kwargs) + ' ',
+            self.seperator,
+            self.width))
 
-    return res
+        res = function(*args, **kwargs)
+        pprint(res)
+
+        stat = []
+        stat.append("type '" + res.__class__.__name__ + "'")
+        if hasattr(res, '__iter__'):
+            types = []
+            for e in res:
+                types.append(e.__class__.__name__)
+            stat.append(list(set(types)))
+        if hasattr(res, '__len__'):
+            stat.append(' #' + str(len(res)))
+        print(''.join(map(str, stat)))
+
+        return res
+
+fnprint = FnPrinter().fnprint
