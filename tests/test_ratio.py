@@ -142,5 +142,20 @@ class TestRatios(unittest.TestCase):
         res = similarity(hello, u'schnello', (1,4))
         self.assertEqual(res, 0.5673076923076923)
 
+
+    # @unittest.skip("skip this test")
+    def test_median(self):
+        from tocoli.ratio import median
+
+        res = median([1, 3, 5])
+        self.assertEqual(res, 3.0)
+
+        res = median([1, 3, 5, 7])
+        self.assertEqual(res, 4.0)
+
+        res = median([7, 12, 3, 1, 6, 9])
+        self.assertEqual(res, 6.5)
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -63,3 +63,12 @@ def meta(str1, str2, ratios, weights):
 def similarity(str1, str2, weights=(1, 1), case_sensitive=True):
     s1, s2 = comparable(str1, str2, case_sensitive)
     return meta(s1, s2, ratios=(equal, levenshtein), weights=weights)
+
+
+# http://stackoverflow.com/a/29870273
+# https://stackoverflow.com/users/4832830/batuhan-ulug
+def median(list):
+    m, r = divmod(len(list), 2)
+    if r:
+        return sorted(list)[m]
+    return sum(sorted(list)[m-1:m+1]) / 2.0

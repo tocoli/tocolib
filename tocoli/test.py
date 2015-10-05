@@ -5,8 +5,7 @@
 # @author: Sebastian Wiesendahl <sebastian@wiesendahl.de>
 
 from time import time
-from numpy import array, median
-
+from tocoli.ratio import median
 
 def arguments(args=None, kwargs=None):
     r = '('
@@ -78,18 +77,18 @@ class Bencher:
             b.append(diff)
             if len(b) > 1000:
                 if m is None:
-                    m = median(array(b))
+                    m = median(b)
                 else:
-                    m = (m + median(array(b))) / float(2)
+                    m = (m + median(b)) / float(2)
                 b = []
 
             if self.collect:
                 res.append(r)
 
         if m is None:
-            m = median(array(b))
+            m = median(b)
         else:
-            m = (m + median(array(b))) / float(2)
+            m = (m + median(b)) / float(2)
         a = t / float(self.rounds)
 
         if self.stopwatch:

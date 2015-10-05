@@ -6,6 +6,10 @@ The `tocolib` contains utility functions to make your life as developer easier.
 Install
 =======
 
+Install this dependencies if you don't like to build them by yourself:
+
+    sudo apt-get install python-levenshtein python-numpy
+
 under Ubuntu make sure that you also have `pip3` if you like to use the library with Python 3:
 
     sudo apt-get install python3-pip
