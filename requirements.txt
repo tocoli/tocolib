@@ -2,4 +2,5 @@
 six                 # Python 2 and 3 compatibility utilities
 chardet             # Universal encoding detector for Python 2 and 3
 python-levenshtein  # Python extension for computing string edit distances and similarities.
+itsdangerous        # Various helpers to pass trusted data to untrusted environments and back.
 passlib             # comprehensive password hashing framework supporting over 30 schemes
