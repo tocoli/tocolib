@@ -4,6 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [0.2.5][0.2.5] - 2015-10-05
+### Removed
+* class `Match` from module `regrex`
+
+### Added
+* regular expression generator
+* authentication helpers
 
 ## [0.2.4][0.2.4] - 2015-09-11
 ### Changed
@@ -41,6 +48,7 @@ new modules:
     type - type conversion utilities
 
 [unreleased]: https://bitbucket.org/tocoli/tocolib/commits/branch/develop
+[0.2.5]: https://bitbucket.org/tocoli/tocolib/commits/tag/0.2.5
 [0.2.4]: https://bitbucket.org/tocoli/tocolib/commits/tag/0.2.4
 [0.2.3]: https://bitbucket.org/tocoli/tocolib/commits/tag/0.2.3
 [0.2.2]: https://bitbucket.org/tocoli/tocolib/commits/tag/0.2.2

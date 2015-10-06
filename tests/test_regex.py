@@ -620,9 +620,9 @@ class TestRe(unittest.TestCase):
 
     # @unittest.skip("skip this test")
     def test_generate(self):
-        from tocoli.regex import Re, range, ANY, group, optional, BEGINNING
         import re
-        from tocoli import regex
+        from tocoli.regex import Re, ANY, BEGINNING
+        # from tocoli import regex
 
         r = re.compile(Re('[ab]'))
         m = r.match('a')
@@ -643,135 +643,18 @@ class TestRe(unittest.TestCase):
         e = Re('a') + Re('b')
         self.assertEqual(e, u'ab')
 
-        # print(Re('hello').group().quantify(0,1).lazy().add("world"))
-        # print(group('hello').add(' world').add_set(''))
-        # print(Re(ANY))
-        # print(Re(ANY).lookahead('\\\\', False).add('-' + ANY).lookahead('\\\\', False).group())
+        expr = (Re('hello') | Re('bello')).group().quantify(0,1).lazy().add("world")
+        self.assertEqual(expr, u'(hello|bello){0,1}?world')
 
-        print(regex.BEGINNING + Re(r'\\-\\a-zA-Zbcd\\').set())
+        expr = Re('h').add_set('ae').add('llo world')
+        self.assertEqual(expr, u'h[ae]llo world')
 
-        # word = u'altenador'
-        # # word = u'cgnl'
+        expr = Re(ANY).lookahead('\\\\', False).add('-' + ANY).lookahead('\\\\', False).group()
+        self.assertEqual(expr, u'(.(?!\\\\)-.(?!\\\\))')
 
-        # from tocoli.spell import Dictionary, STRICT, lookup
-        # dictionary = Dictionary.latin[STRICT]
+        expr = BEGINNING + Re(r'\\-\\a-zA-Zbcd\\\|').set()
+        self.assertEqual(expr, r'^[A-Z\\\\-\\\|a-z]')
 
-        # def search_regex(word):
-        #     from tocoli.map import map_to_non_accented_characters
-
-        #     word_ascii = map_to_non_accented_characters(word)
-
-        #     for i, (a, b) in enumerate(zip(word, word_ascii)):
-        #         if i > 1:
-        #             if a not in 'aeiou':
-        #                 a = lookup(a, dictionary)[0].split('|')
-        #             else:
-        #                 a = [a]
-        #             if b not in 'aeiou':
-        #                 b = lookup(b, dictionary)[0].split('|')
-        #             else:
-        #                 b = [b]
-
-        #             if len(a + b) <= 2:
-        #                 r = u''.join(set(a)) #u''.join([c[0] for c in a]))
-        #             else:
-        #                 r = u'[{}]'.format(
-        #                     u''.join(set([c[0] for c in a] +
-        #                              [c[0] for c in b])))
-
-        #             # any 'crln'
-        #             if not (any(i for i in a if i in 'aeiou') or
-        #                     any(i for i in b if i in 'aeiou')):
-        #                 r = u'{}{}'.format(r, '{'+'{},{}'.format(1,2)+'}')
-
-        #             if i < len(word) - 1:
-        #                 r = r + u'.?'
-        #             yield r
-        #         else:
-        #             if i == 0:
-        #                 yield u'^' + a
-        #             else:
-        #                 yield a + u'.?'
-
-        # def flip(l, a, b):
-        #     r = list(l)
-        #     tmp = r[a]
-        #     r[a] = r[b]
-        #     r[b] = tmp
-        #     return r
-
-        # def generate_char_flips(groups):
-
-        #     gs = list(groups)
-        #     lgs = len(gs)
-
-        #     for i, g in enumerate(gs):
-        #         if i > 1:
-        #             if i+1 < lgs:
-        #                 yield flip(gs, i, i+1)
-        #         elif i == 0:
-        #             yield gs
-        #         else:
-        #             pass
-
-        # print('--')
-        # for g in generate_char_flips(search_regex(word)):
-        #     print(u''.join(g))
-        # print('')
-        # for g in generate_char_flips(search_regex(''.join(reversed(word)))):
-        #     print(u''.join(g))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class TestGenerator(unittest.TestCase):
-
-#     # @unittest.skip("skip this test")
-#     def test_generate(self):
-#         from tocoli.regex import Generator
-
-#         START         = 0
-#         END           = 1
-#         SET           = 2
-#         FLIP_ALPHAS   = 3
-#         FLIP_NUMBERS  = 4
-#         # FLIP_KEYBOARD = 5
-#         MATCH_WORD    = 6
-#         MATCH_CHARS   = 7
-#         # quantifier
-#         LAZY          = 8
-
-#         LOOKUP
-
-
-
-
-#         # degree_of_freedom
-#         # DEGREE_OF_FREEDOM
-
-#         def quantifier(min, max=None):
-#             if max is None:
-#                 max = ''
-#             return r'\{{},{}\}'.format(str(min), str(max))
-
-
-#         options = (START, FLIP, LAZY)
-#         dictionary = None
-
-#         g = Generator(options, dictionary)
-
-#         res = g.generate('hello')
-#         self.assertEqual(res, None)
 
 if __name__ == '__main__':
     unittest.main()

@@ -339,10 +339,10 @@ class Re(unicode if PY2 else str):
         return hash(self.expr)
 
     def __add__(self, other):
-        return Re(self.expr + other.expr)
+        return Re(u'{}{}'.format(self.expr, other.expr))
 
     def __and__(self, other):
-        return Re(self.expr + other.expr)
+        return Re(u'{}{}'.format(self.expr, other.expr))
 
     def __or__(self, other):
         return Re(u'{}|{}'.format(self, other))

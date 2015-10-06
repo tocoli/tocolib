@@ -120,6 +120,10 @@ Subpackages
 Modules
 >>>>>>>
 
+``auth``    **- common authetication helpers**
+    Its dangerous out there. This module is all about passwords, hashes, salts,
+    tokens and api keys.
+
 ``cmp``     **- compare utilities**
     For those who like to compare apples with pears. Make different data types
     comparable.

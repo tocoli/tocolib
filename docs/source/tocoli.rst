@@ -13,6 +13,14 @@ Subpackages
 Submodules
 ----------
 
+tocoli.auth module
+------------------
+
+.. automodule:: tocoli.auth
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 tocoli.cmp module
 -----------------
 
