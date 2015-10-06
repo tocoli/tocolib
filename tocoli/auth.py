@@ -4,17 +4,17 @@
 # @copyright: © 2015 Sebastian Wiesendahl. All rights reserved.
 # @author: Sebastian Wiesendahl <sebastian@wiesendahl.de>
 
-import string
-import random
+from string import ascii_uppercase, digits, ascii_lowercase
+from random import SystemRandom
 from itsdangerous import TimedJSONWebSignatureSerializer as TimedSerializer, SignatureExpired
 from itsdangerous import JSONWebSignatureSerializer as Serializer, BadSignature
 from passlib.hash import sha256_crypt
 
-SALT_RANGE = string.ascii_uppercase + string.digits + string.ascii_lowercase
+SALT_RANGE = ascii_uppercase + digits + ascii_lowercase
 
 def generate_salt(length=10, chars=SALT_RANGE):
     '''Generates a salt. Defaults to a random salt from [A-Z0-9a-z].'''
-    r = random.SystemRandom()
+    r = SystemRandom()
     return u''.join(r.choice(chars) for _ in range(length))
 
 
