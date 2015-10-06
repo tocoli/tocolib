@@ -13,7 +13,7 @@ from passlib.hash import sha256_crypt
 SALT_RANGE = string.ascii_uppercase + string.digits + string.ascii_lowercase
 
 def generate_salt(length=10, chars=SALT_RANGE):
-    '''Generates a salt. Defaults to a random salt from [a-z0-9].'''
+    '''Generates a salt. Defaults to a random salt from [A-Z0-9a-z].'''
     r = random.SystemRandom()
     return u''.join(r.choice(chars) for _ in range(length))
 
