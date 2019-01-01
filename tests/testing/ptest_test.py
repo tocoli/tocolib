@@ -18,11 +18,11 @@ class TestTest(unittest.TestCase):
         self.assertEqual(res, 5)
 
         b = Bencher(rounds=2)
-        res = b.bench(add, 1+1, 3)
+        res = b.bench(add, 1 + 1, 3)
         self.assertEqual(res, 5)
 
         b = Bencher(rounds=3, collect=True)
-        res = b.bench(add, 1+1, 3)
+        res = b.bench(add, 1 + 1, 3)
         self.assertEqual(res, [5, 5, 5])
 
         b = Bencher(stopwatch=False)
