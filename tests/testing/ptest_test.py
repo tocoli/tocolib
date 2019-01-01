@@ -53,13 +53,16 @@ class TestTest(unittest.TestCase):
     def test_fnprint(self):
         from tocoli.test import fnprint
 
-        def concat(a, b, c): return str(a) + str(b) + str(c)
+        def concat(a, b, c):
+            return str(a) + str(b) + str(c)
 
         fnprint(concat, a='aaa', b='b', c='c')
 
-        def mult(a, b): return a * b
+        def mult(a, b):
+            return a * b
 
         fnprint(mult, 2, 5)
+
 
 if __name__ == '__main__':
     unittest.main()
