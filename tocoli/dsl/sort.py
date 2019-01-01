@@ -4,7 +4,6 @@
 
 from tocoli.sort import ASCENDING
 from tocoli.sort import DESCENDING
-
 from tocoli.sort import sort_bytes as bytes
 from tocoli.sort import sort_string as string
 from tocoli.sort import sort_iter as iter
@@ -21,10 +20,12 @@ class dict:
         from tocoli.sort import sort_dict_by_value as value
         value = staticmethod(value)
 
+
 class strings:
     class by:
         from tocoli.sort import sort_strings_by_similarity as similarity
         similarity = staticmethod(similarity)
+
 
 class dicts:
     class by:

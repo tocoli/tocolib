@@ -20,6 +20,7 @@ from tocoli.map import (NONE,
                         ALL,
                         DEFAULT)
 
+
 class string:
     from tocoli.map import map_to_non_accented_characters as non_accented
     non_accented = staticmethod(non_accented)
