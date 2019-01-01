@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [0.2.5][0.2.6] - 2018-12-31
+### Changed
+* set minimum requirement for to `passlib>=1.7.0`
+
 ## [0.2.5][0.2.5] - 2015-10-05
 ### Removed
 * class `Match` from module `regrex`
