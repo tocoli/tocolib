@@ -8,15 +8,15 @@ The ``tocolib`` contains utility functions to make your life as developer easier
 Install
 =======
 
-Install this dependencies globally if you don't like to build them by yourself:
+Install this dependencies globally if you don't like to build them by yourself::
 
-    ``sudo apt-get install python-levenshtein python-numpy``
+    sudo apt-get install python-levenshtein python-numpy
 
-Under Ubuntu 16.04 make sure that you also have ``pip3`` besides ``pip``, if you like to use the library with Python 3:
+Under Ubuntu 16.04 make sure that you also have ``pip3`` besides ``pip``, if you like to use the library with Python 3::
 
-    ``sudo apt-get install python3-pip``
+    sudo apt-get install python3-pip
 
-Install all dependencies (locally). Make sure you have `virtualenv` installed:::
+Install all dependencies (locally). Make sure you have `virtualenv` installed::
 
     virtualenv ./venv
     source venv/bin/activate
