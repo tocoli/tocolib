@@ -1,3 +1,5 @@
+.. image:: https://api.travis-ci.org/tocoli/tocolib.svg?branch=master
+
 tocolib
 =======
 
