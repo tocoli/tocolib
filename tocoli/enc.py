@@ -6,7 +6,7 @@ import tocoli.py2.enc as py2enc
 import tocoli.py3.enc as py3enc
 
 def encode(input, encoding='utf-8', errors='strict', input_encoding='utf-8'):
-    """Encode any string. Returns always a byte string.
+    """Encode any string. Returns a byte string otherwise the input.
 
     Use this funtion to encode strings you like to write to any kind of output
     (e.g. stdout, file, API, …). This is useful to exchange information in a
@@ -70,7 +70,7 @@ def encode(input, encoding='utf-8', errors='strict', input_encoding='utf-8'):
 
 
 def decode(input, encoding='utf-8', errors='strict', detect='utf-8'):
-    """Decode any string. Returns always a unicode decoded string.
+    """Decode any string. Returns a unicode decoded string otherwise the input.
 
     Use this function to decode an encoded string. Its recommended to use this
     function as early as possible in your data flow, when you received data
@@ -91,7 +91,7 @@ def decode(input, encoding='utf-8', errors='strict', detect='utf-8'):
 
         Advanced codec support::
 
-            >>> encode('Y2Fmw6k=\\n', 'base64')
+            >>> decode('Y2Fmw6k=\\n', 'base64')
             u'café'     # utf-8 decoded string
 
     Args:

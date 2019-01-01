@@ -7,7 +7,7 @@ from chardet import detect as det
 
 
 def encode(input, output_encoding='utf-8', errors='strict', input_encoding='utf-8'):
-    """Encode any string. Returns always a encoded 'str'."""
+    """Encode any string. Returns an encoded 'str' otherwise the input."""
     if isinstance(input, str):
         if input_encoding == output_encoding:
             return input
@@ -34,7 +34,7 @@ def encode(input, output_encoding='utf-8', errors='strict', input_encoding='utf-
 
 
 def decode(input, encoding='utf-8', errors='strict', detect='utf-8'):
-    """Decode any string. Returns always a decoded 'unicode'."""
+    """Decode any string. Returns a decoded 'unicode' otherwise the input."""
     if isinstance(input, str):
         try:
             r = dec(input, encoding, errors)
