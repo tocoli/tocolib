@@ -57,7 +57,5 @@ class Tests(unittest.TestCase):
         self.assertEqual(verify_api_key(api_key, u'secret'), u'Alice')
 
 
-
-
 if __name__ == '__main__':
     unittest.main()

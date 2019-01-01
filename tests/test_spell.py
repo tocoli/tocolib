@@ -37,5 +37,6 @@ class TestSpelling(unittest.TestCase):
         res = lookup(u'ab', Dictionary.latin[WIDE])
         self.assertEqual(res, [u'a|á|ä|o|ó|e', u'b|v|w'])
 
+
 if __name__ == '__main__':
     unittest.main()

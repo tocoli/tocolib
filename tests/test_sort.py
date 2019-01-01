@@ -234,5 +234,6 @@ class TestSort(unittest.TestCase):
         res = sort_set(set([1, 3, 2, 3, 2]))
         self.assertEqual(res, [1, 2, 3])
 
+
 if __name__ == '__main__':
     unittest.main()

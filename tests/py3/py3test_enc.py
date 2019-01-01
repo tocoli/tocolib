@@ -182,5 +182,6 @@ class TestStr(unittest.TestCase):
         self.assertEqual(decode(encode(b'caf\xc3\xa9', 'utf-32'), 'utf-32'), 'café')
         self.assertEqual(decode(encode('café', 'utf-32'), 'utf-32'), 'café')
 
+
 if __name__ == '__main__':
     unittest.main()
