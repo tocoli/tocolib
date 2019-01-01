@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# @copyright: © 2015 Sebastian Wiesendahl. All rights reserved.
-# @author: Sebastian Wiesendahl <sebastian@wiesendahl.de>
-
 from tocoli.ratio import similarity as sim
 from tocoli.cmp import comparable
 from tocoli.enc import encode

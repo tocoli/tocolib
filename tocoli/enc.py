@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# @copyright: © 2015 Sebastian Wiesendahl. All rights reserved.
-# @author: Sebastian Wiesendahl <sebastian@wiesendahl.de>
-
 from tocoli import Py, PY2
 import tocoli.py2.enc as py2enc
 import tocoli.py3.enc as py3enc

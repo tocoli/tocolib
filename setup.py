@@ -29,14 +29,14 @@ setup(
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://toco.mx/dist',
+    url='https://github.com/tocoli/tocolib',
 
     # Author details
     author='Sebastian Wiesendahl',
     author_email='sebastian@wiesendahl.de',
 
     # Choose your license
-    license='Proprietary',
+    license='MIT',
 
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -44,19 +44,20 @@ setup(
         #   3 - Alpha
         #   4 - Beta
         #   5 - Production/Stable
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
 
         # Indicate who your project is intended for
         'Intended Audience :: Developers',
         'Topic :: Utilities',
         'Topic :: Software Development :: Libraries',
+        'Topic :: Software Development :: Encoding',
         'Topic :: Software Development :: Localization',
         'Topic :: Software Development :: Internationalization',
         'Topic :: Software Development :: Testing',
         'Topic :: System :: Benchmark',
 
         # Pick your license as you wish (should match "license" above)
-        'License :: Other/Proprietary License',
+        'License :: MIT License',
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
@@ -67,10 +68,12 @@ setup(
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
     ],
 
     # What does your project relate to?
-    keywords='development utilities testing library',
+    keywords='development utility library encoding sort filter testing ',
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().

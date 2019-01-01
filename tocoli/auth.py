@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# @copyright: © 2015 Sebastian Wiesendahl. All rights reserved.
-# @author: Sebastian Wiesendahl <sebastian@wiesendahl.de>
-
 from string import ascii_uppercase, digits, ascii_lowercase
 from random import SystemRandom
 from itsdangerous import TimedJSONWebSignatureSerializer as TimedSerializer, SignatureExpired
@@ -20,7 +17,7 @@ def generate_salt(length=10, chars=SALT_RANGE):
 
 def encrypt_password(password, rounds=100001):
     '''Encrypts a password as hash.'''
-    return sha256_crypt.encrypt(password, rounds=rounds)
+    return sha256_crypt.using(rounds=rounds).hash(password)
 
 
 def verify_password(hash, password):

@@ -3,6 +3,8 @@ tocolib
 
 A multipurpose utility library for Python 2 and 3.
 
+The library namespace is ``tocoli``. For information on 
+available packages, modules and functionality see `Structure`_.
 
 Highlights
 ----------
@@ -11,7 +13,7 @@ Sorting dictionaries
 >>>>>>>>>>>>>>>>>>>>
 
     Sort a 'list' of 'dict' by simply defining the `keys` you like to sort
-    by.
+    by in order from last to first.
 
     Example:
 
@@ -31,8 +33,8 @@ Sorting dictionaries
          {'firstname': 'Bob',   'lastname': 'Bond'},
          {'firstname': 'Carol', 'lastname': 'Bond'}]
 
-A Domain Specific Language for `tocolib`
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+A Domain Specific Language for intuitive function calls
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     The ``dsl`` package provides a coherent style to access the `tocolib`
     modules and functions as module or static class functions.
@@ -104,8 +106,9 @@ Namespace
 >>>>>>>>>
 
 ``tocoli``  **- root**
-    Includes the six library (Python 2 and 3 compatibility utilities) at the
-    root.
+    The tocolib wraps the ``six`` library (Python 2 and 3 compatibility utilities)
+    at the root. Thus all ``six`` packages and modules are also available under the
+    root namespace.
 
 
 Subpackages

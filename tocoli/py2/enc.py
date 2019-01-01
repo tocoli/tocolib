@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# @copyright: © 2015 Sebastian Wiesendahl. All rights reserved.
-# @author: Sebastian Wiesendahl <sebastian@wiesendahl.de>
-
 from tocoli import Py
 from codecs import encode as enc, decode as dec
 from chardet import detect as det

@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# @copyright: © 2015 Sebastian Wiesendahl. All rights reserved.
-# @author: Sebastian Wiesendahl <sebastian@wiesendahl.de>
-
 import unicodedata
 from tocoli import binary_type, text_type, integer_types,iteritems
 from tocoli.fn import first_arg

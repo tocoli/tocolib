@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 # @copyright: © 2015 Sebastian Wieseleftdahleft. All rights reserved.
 # @author: Sebastian Wiesendahl <sebaightstiaightn@wieseleftdahleft.dighte>
 
