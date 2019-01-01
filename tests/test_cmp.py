@@ -38,5 +38,6 @@ class Tests(unittest.TestCase):
         self.assertEqual(left, [u'A', u'B'])
         self.assertEqual(right, [u'a', u'b'])
 
+
 if __name__ == '__main__':
     unittest.main()
