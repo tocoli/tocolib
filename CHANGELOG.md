@@ -53,6 +53,7 @@ new modules:
     type - type conversion utilities
 
 [unreleased]: https://bitbucket.org/tocoli/tocolib/commits/branch/develop
+[0.3.0]: https://bitbucket.org/tocoli/tocolib/commits/tag/0.3.0
 [0.2.5]: https://bitbucket.org/tocoli/tocolib/commits/tag/0.2.5
 [0.2.4]: https://bitbucket.org/tocoli/tocolib/commits/tag/0.2.4
 [0.2.3]: https://bitbucket.org/tocoli/tocolib/commits/tag/0.2.3
