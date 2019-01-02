@@ -92,12 +92,12 @@ Powerful mapping
 What's New
 ----------
 
+* Changed minimum requirement: passlib>=1.7.0
 * The former ``dsl`` module is now an own subpackage.
 * The `keys` parameter notation for sorting functions changed.
 * There are new `flags` paramter options for mapping functions.
 
-For more detailed information on current changes check the ``CHANGELOG.md``.
-
+For more detailed information on current changes check the `CHANGELOG.md <https://github.com/tocoli/tocolib/blob/master/CHANGELOG.md>`_
 
 Structure
 ---------

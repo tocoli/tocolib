@@ -5,6 +5,8 @@ tocolib
 
 The ``tocolib`` contains utility functions to make your life as developer easier.
 
+For more information see: `DESCRIPTION <https://github.com/tocoli/tocolib/blob/master/DESCRIPTION.rst>`_
+
 Install
 =======
 
