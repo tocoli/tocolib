@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [0.3.1][0.3.1] - 2019-01-01
+### Changed
+* created new wheel for pypi
+
 ## [0.3.0][0.3.0] - 2019-01-01
 ### Changed
 * set minimum requirement for to `passlib>=1.7.0`
@@ -53,6 +57,7 @@ new modules:
     type - type conversion utilities
 
 [unreleased]: https://github.com/tocoli/tocolib/tree/master
+[0.3.1]: https://github.com/tocoli/tocolib/tree/0.3.0
 [0.3.0]: https://github.com/tocoli/tocolib/tree/0.3.0
 [0.2.5]: https://github.com/tocoli/tocolib/tree/0.2.5
 [0.2.4]: https://github.com/tocoli/tocolib/tree/0.2.4
