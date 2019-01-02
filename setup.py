@@ -52,7 +52,6 @@ setup(
         # Topics
         'Topic :: Utilities',
         'Topic :: Software Development :: Libraries',
-        'Topic :: Software Development :: Utilities',
         'Topic :: Software Development :: Localization',
         'Topic :: Software Development :: Internationalization',
         'Topic :: Software Development :: Testing',
