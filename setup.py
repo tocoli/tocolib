@@ -48,9 +48,11 @@ setup(
 
         # Indicate who your project is intended for
         'Intended Audience :: Developers',
+
+        # Topics
         'Topic :: Utilities',
         'Topic :: Software Development :: Libraries',
-        'Topic :: Software Development :: Encoding',
+        'Topic :: Software Development :: Utilities',
         'Topic :: Software Development :: Localization',
         'Topic :: Software Development :: Internationalization',
         'Topic :: Software Development :: Testing',
