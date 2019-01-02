@@ -4,9 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
-## [0.2.5][0.2.6] - 2018-12-31
+## [0.3.0][0.3.0] - 2019-01-01
 ### Changed
 * set minimum requirement for to `passlib>=1.7.0`
+    * changed internal password hashing call
 
 ## [0.2.5][0.2.5] - 2015-10-05
 ### Removed
