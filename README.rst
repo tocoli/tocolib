@@ -55,6 +55,7 @@ run a test function:
 .. |build-status| image:: https://api.travis-ci.org/tocoli/tocolib.svg?branch=master
     :alt: build status
     :scale: 100%
+    :target: https://travis-ci.org/tocoli/tocolib
 
 .. |docs| image:: https://readthedocs.org/projects/tocolib/badge/?version=latest
     :alt: Documentation Status
