@@ -1,7 +1,7 @@
-.. image:: https://api.travis-ci.org/tocoli/tocolib.svg?branch=master
-
 tocolib
 =======
+
+|build-status| |docs|
 
 The ``tocolib`` contains utility functions to make your life as developer easier.
 
@@ -51,3 +51,12 @@ run a test class:
 
 run a test function:
     ``python3 -m unittest tests.test_module.TestClass.test_function``
+
+.. |build-status| image:: https://api.travis-ci.org/tocoli/tocolib.svg?branch=master
+    :alt: build status
+    :scale: 100%
+
+.. |docs| image:: https://readthedocs.org/projects/tocolib/badge/?version=latest
+    :alt: Documentation Status
+    :scale: 100%
+    :target: https://tocolib.readthedocs.io/en/latest/?badge=latest
