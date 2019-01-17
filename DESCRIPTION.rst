@@ -1,6 +1,8 @@
 tocolib
 =======
 
+|build-status| |docs|
+
 A multipurpose utility library for Python 2 and 3.
 
 The library namespace is ``tocoli``. For information on 
@@ -167,3 +169,14 @@ Modules
 
 ``type``    **- type conversion utilities**
     What doesn't fit is made to fit. Universal type transformations.
+
+
+.. |build-status| image:: https://api.travis-ci.org/tocoli/tocolib.svg?branch=master
+    :alt: build status
+    :scale: 100%
+    :target: https://travis-ci.org/tocoli/tocolib
+
+.. |docs| image:: https://readthedocs.org/projects/tocolib/badge/?version=latest
+    :alt: Documentation Status
+    :scale: 100%
+    :target: https://tocolib.readthedocs.io/en/latest/?badge=latest
