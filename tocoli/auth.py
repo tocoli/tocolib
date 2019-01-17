@@ -7,10 +7,10 @@ from itsdangerous import TimedJSONWebSignatureSerializer as TimedSerializer, Sig
 from itsdangerous import JSONWebSignatureSerializer as Serializer, BadSignature
 from passlib.hash import sha256_crypt
 
-SALT_RANGE = ascii_uppercase + digits + ascii_lowercase
+SALT_RANGE = digits + ascii_uppercase + ascii_lowercase
 
 def generate_salt(length=10, chars=SALT_RANGE):
-    '''Generates a salt. Defaults to a random salt from [A-Z0-9a-z].'''
+    '''Generates a salt. Defaults to a random salt from [0-9A-Za-z].'''
     r = SystemRandom()
     return u''.join(r.choice(chars) for _ in range(length))
 
