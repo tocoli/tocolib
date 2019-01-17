@@ -26,40 +26,41 @@ For Python 3 install ``pip3``:
 Library Dependencies
 --------------------
 
-Install all dependencies (locally). Make sure you have ``virtualenv`` globally on your system installed.
+Install all runtime dependencies (locally) into the virtual environment.
+
+.. note:: Make sure you have ``virtualenv`` installed globally on your system.
 
 For Python 2::
+
     virtualenv -p /usr/bin/python2.7 py27
     source py27/bin/activate
     pip install -r requirements.txt
 
 For Python 3::
+
     virtualenv -p /usr/bin/python3.6 py36
     source py36/bin/activate
     pip install -r requirements.txt
 
-To leave a ``virtualenv`` run::
+To leave a ``virtualenv`` run:
+    ``deactivate``
 
-    deactivate
+.. note:: If you don't like to built the heavy weighted dependencies by yourself, 
+    then you might want to install some prebuild version globally. Under ubuntu do:
 
-Prebuild Dependencies
----------------------
-
-Install this dependencies globally if you don't like to build them by yourself::
-
-    sudo apt-get install python-levenshtein python-numpy
+    ``sudo apt-get install python-levenshtein python-numpy``
 
 Testing
 =======
 
 Run all tests with the built-in test discovery or with ``pytest``.
 
-Make sure you have ``pytest`` installed with ``pip install pytest``.
+.. note:: Make sure you have ``pytest`` installed with ``pip install pytest``.
 
-    built-in:
+built-in testing:
     ``python -m unittest discover -s './tests' -p 'test_*.py'``
 
-    or with ``pytest``:
+with ``pytest``:
     ``pytest tests``
 
 If you want to test just some parts of the library, then one can invoke more specficic commands.
