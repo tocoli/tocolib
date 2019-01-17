@@ -99,7 +99,7 @@ What's New
 * The `keys` parameter notation for sorting functions changed.
 * There are new `flags` paramter options for mapping functions.
 
-For more detailed information on current changes check the `CHANGELOG.md <https://github.com/tocoli/tocolib/blob/master/CHANGELOG.md>`_
+For more detailed information on current changes check the `change log <https://github.com/tocoli/tocolib/blob/master/CHANGELOG.md>`_.
 
 Structure
 ---------

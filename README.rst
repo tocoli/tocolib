@@ -8,7 +8,7 @@ The ``tocolib`` contains utility functions for common use cases to make your lif
 For more information on the functionality included see the `description <https://github.com/tocoli/tocolib/blob/master/DESCRIPTION.rst>`_ file or 
 vist the `documentation <https://tocolib.readthedocs.io/en/latest/?badge=latest>`_.
 
-For latest changes see the `changelog <https://github.com/tocoli/tocolib/blob/master/CHANGELOG.md>`_.
+For latest changes see the `change log <https://github.com/tocoli/tocolib/blob/master/CHANGELOG.md>`_.
 
 Install
 =======
@@ -26,10 +26,13 @@ For Python 3 install ``pip3``:
 
     ``sudo apt-get install python3-pip``
 
+.. note:: If you are unfamiliar with installing packages in python you might want to read the 
+    documentation on this topic: `Installing Packages <https://packaging.python.org/tutorials/installing-packages/>`_
+
 Library Dependencies
 --------------------
 
-Install all runtime dependencies (locally) into the virtual environment.
+Install all runtime dependencies into a virtual environment.
 
 .. note:: Make sure you have ``virtualenv`` installed globally on your system.
 
@@ -49,19 +52,28 @@ For Python 3:
     pip install -r requirements.txt
 
 To leave a ``virtualenv`` run:
+
     ``deactivate``
 
-.. note:: If you don't like to built the heavy weighted dependencies by yourself, 
-    then you might want to install some prebuild version globally. Under ubuntu do:
+.. note:: If you don't like to built heavy weighted dependencies by yourself, 
+    then you might want to install some prebuild version globally.
+    
+    E.g. under ubuntu do:
+    
+        ``sudo apt-get install python-levenshtein python-numpy``
 
-    ``sudo apt-get install python-levenshtein python-numpy``
+    or
+
+        ``sudo apt-get install python3-levenshtein python3-numpy``
 
 Testing
 =======
 
 Run all tests with the built-in test discovery or with ``pytest``.
 
-.. note:: Make sure you have ``pytest`` installed. E.g.: with ``pip install pytest``.
+.. note:: Make sure you have ``pytest`` installed. For example with:
+
+        ``pip install pytest``
 
 built-in testing:
 
