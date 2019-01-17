@@ -16,7 +16,7 @@ def generate_salt(length=10, chars=SALT_RANGE):
 
 
 def encrypt_password(password, rounds=100001):
-    '''Encrypts a password as hash.'''
+    '''Encrypts a password as salted hash.'''
     return sha256_crypt.using(rounds=rounds).hash(password)
 
 
