@@ -36,8 +36,21 @@ def arguments(args=None, kwargs=None):
 def seperator(str='', seperator='-', width=80):
 
     if width is None or width < 0:
-        import os
-        _, width = os.popen('stty size', 'r').read().split()
+        from tocoli import PY2
+        if PY2:
+            import subprocess
+            from subprocess import CalledProcessError
+            try:
+                _, width = subprocess.check_output(['stty', 'size']).split()
+            except CalledProcessError:
+                pass
+            finally:
+                if width is None:
+                    width = 80
+        else:
+            import shutil
+            width, _ = shutil.get_terminal_size((80, 20))
+        
         width = int(width) - 1
 
     for _ in range(width - len(str)):
